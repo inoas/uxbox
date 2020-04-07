@@ -38,7 +38,7 @@
         zoom-to-100 #(st/emit! dv/reset-zoom)
         zoom-to-200 #(st/emit! dv/zoom-to-200)]
     [:div.zoom-widget
-     [:span.add-zoom {:on-click decrease} "-"]
+     ;;[:span.add-zoom {:on-click decrease} "-"]
      [:div.input-container {:on-click #(reset! show-dropdown? true)}
       [:span {} (str (mth/round (* 100 zoom)) "%")]
       [:span.dropdown-button i/arrow-down]
@@ -55,7 +55,9 @@
          "Zoom to 100%" [:span "Shift + 0"]]
         [:li {:on-click zoom-to-200}
          "Zoom to 200%"]]]]
-     [:span.remove-zoom {:on-click increase} "+"]]))
+     ;;[:span.remove-zoom {:on-click increase} "+"]
+     ]))
+
 
 (mf/defc share-link
   [{:keys [page] :as props}]
@@ -67,10 +69,10 @@
         delete #(st/emit! dv/delete-share-link)
         href (.-href js/location)]
     [:*
-     [:span.btn-share.tooltip.tooltip-bottom
+     [:span.btn-primary.btn-small
       {:alt "Share link"
        :on-click #(swap! show-dropdown? not)}
-      i/exit]
+      "Share link"]
 
      [:& dropdown {:show @show-dropdown?
                    :on-close #(swap! show-dropdown? not)
@@ -123,7 +125,7 @@
       (when-not anonymous?
         [:& share-link {:page (:page data)}])
       (when-not anonymous?
-        [:span.btn-primary {:on-click on-edit} "Edit page"])
+        [:a {:on-click on-edit} "Edit page"])
       [:& zoom-widget {:zoom (:zoom local)}]
       [:span.btn-fullscreen.tooltip.tooltip-bottom
        {:alt "Full screen"
