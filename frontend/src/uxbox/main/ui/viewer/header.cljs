@@ -82,8 +82,8 @@
        [:div.share-link-input
         (if (string? token)
           [:span.link (str href "&token=" token)]
-          [:span "Share link will apear here"])
-        i/chain]
+          [:span.link-placeholder "Share link will apear here"])
+          [:span.link-button "Copy link"]]
        [:span.share-link-subtitle "Anyone with the link will have access"]
        [:div.share-link-buttons
         (if (string? token)

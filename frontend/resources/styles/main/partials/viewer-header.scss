@@ -178,29 +178,30 @@
     }
 
     .share-link-input {
-      display: flex;
-      justify-content: space-between;
-      padding: $small;
-      align-items: center;
       border: 1px solid $color-gray-20;
       border-radius: 3px;
+      display: flex;
+      height: 40px;
+      justify-content: space-between;
       margin-bottom: 1rem;
-
-      span.copy-link {
-        color: $color-primary;
-        cursor: pointer;
-        font-size: $fs14;
-      }
+      padding: 9px $small;
+      overflow: hidden;
 
       .link {
+        color: $color-gray-50;
+        line-height: 1.5;
         user-select: all;
       }
 
-      svg {
-        width: 20px;
-        height: 20px;
-        fill: $color-gray-20;
-        stroke: $color-gray-20;
+      .link-button {
+        color: $color-primary-dark;
+        cursor: pointer;
+        flex-shrink: 0;
+        font-size: $fs15;
+
+        &:hover {
+          color: $color-black;
+        }
       }
     }
 
