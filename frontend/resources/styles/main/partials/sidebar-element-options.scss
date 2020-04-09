@@ -186,7 +186,8 @@
 
   .input-text {
     background-color: $color-gray-50;
-    border-color: $color-gray-40;
+    border: 1px solid transparent;
+    border-bottom-color: $color-gray-40;
     color: $color-gray-10;
     font-size: $fs13;
     margin: $x-small;
@@ -195,7 +196,7 @@
 
     &:focus {
       color: lighten($color-gray-10, 8%);
-      border-color: $color-gray-20;
+      border-color: $color-primary;
     }
 
   }
