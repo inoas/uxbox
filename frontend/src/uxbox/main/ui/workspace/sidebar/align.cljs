@@ -25,26 +25,39 @@
                    :else
                      (= uuid/zero (:frame-id (get objects (first selected)))))
 
+        disabled-distribute (cond
+                   (empty? selected) true
+                   (< (count selected) 2) true
+                   :else false)
+
         on-align-button-clicked
         (fn [axis] (when-not disabled (st/emit! (dw/align-objects axis))))]
 
     [:div.align-options
-     [:div.align-button {:class (when disabled "disabled")
-                         :on-click #(on-align-button-clicked :hleft)}
-      i/shape-halign-left]
-     [:div.align-button {:class (when disabled "disabled")
-                         :on-click #(on-align-button-clicked :hcenter)}
-      i/shape-halign-center]
-     [:div.align-button {:class (when disabled "disabled")
-                         :on-click #(on-align-button-clicked :hright)}
-      i/shape-halign-right]
-     [:div.align-button {:class (when disabled "disabled")
-                         :on-click #(on-align-button-clicked :vtop)}
-      i/shape-valign-top]
-     [:div.align-button {:class (when disabled "disabled")
-                         :on-click #(on-align-button-clicked :vcenter)}
-      i/shape-valign-center]
-     [:div.align-button {:class (when disabled "disabled")
-                         :on-click #(on-align-button-clicked :vbottom)}
-      i/shape-valign-bottom]]))
+     [:div.align-group
+       [:div.align-button {:class (when disabled "disabled")
+                           :on-click #(on-align-button-clicked :hleft)}
+        i/shape-halign-left]
+       [:div.align-button {:class (when disabled "disabled")
+                           :on-click #(on-align-button-clicked :hcenter)}
+        i/shape-halign-center]
+       [:div.align-button {:class (when disabled "disabled")
+                           :on-click #(on-align-button-clicked :hright)}
+        i/shape-halign-right]
+       [:div.align-button {:class (when disabled-distribute "disabled")
+                           :on-click #(on-align-button-clicked :hdistribute)}
+        i/shape-hdistribute]]
+     [:div.align-group
+       [:div.align-button {:class (when disabled "disabled")
+                           :on-click #(on-align-button-clicked :vtop)}
+        i/shape-valign-top]
+       [:div.align-button {:class (when disabled "disabled")
+                           :on-click #(on-align-button-clicked :vcenter)}
+        i/shape-valign-center]
+       [:div.align-button {:class (when disabled "disabled")
+                           :on-click #(on-align-button-clicked :vbottom)}
+        i/shape-valign-bottom]
+       [:div.align-button {:class (when disabled-distribute "disabled")
+                           :on-click #(on-align-button-clicked :vdistribute)}
+        i/shape-vdistribute]]]))
 
